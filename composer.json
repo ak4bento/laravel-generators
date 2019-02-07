@@ -1,0 +1,19 @@
+{
+    "name": "akill/generators",
+    "description": "Laravel Generators API",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Muhammad Akil",
+            "email": "muhammad@akil.co.id"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+          "Akill\\Generators\\": "src/"
+        }
+    }
+}
