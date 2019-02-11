@@ -1,0 +1,65 @@
+<?php
+
+namespace App\Http\Helpers;
+
+use App;
+
+class {{modelName}}Helpers
+{
+    /**
+     * Get Array Data Controller Description
+     *
+     * @return array data
+     */
+    static function getDataArray() {
+        return [
+            'id'
+        ];
+    }
+
+    /**
+     * Get Array Data Resource Description
+     *
+     * @return array data
+     */
+    static function getDataResource() {
+         return [
+             'id'
+         ];
+     }
+
+    /**
+     * Get Data Column Description
+     *
+     * @return array data
+     */
+    static function getDataColumn() {
+         return [
+             'id'
+         ];
+    }
+
+    /**
+     * Get Data Column Validation Description
+     *
+     * @return array data
+     */
+    static function getDataColumnValidation() {
+         return [
+             'id' => 'required'
+         ];
+    }
+
+    /**
+     * Get Data Column Validation Description
+     *
+     * @return array data
+     */
+    static function getDataCreate($dataRecord) {
+         return [
+             'id' => $dataRecord['id']
+         ];
+    }
+
+
+}

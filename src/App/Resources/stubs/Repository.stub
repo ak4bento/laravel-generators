@@ -1,0 +1,70 @@
+<?php
+namespace App\Http\Repositories;
+
+use Request;
+use App\Http\Models\{{modelName}};
+use App\Exceptions\DataEmptyException;
+
+/**
+ * Repository for {{modelName}}Controller
+ */
+class {{modelName}}Repository extends BaseRepository
+{
+    /**
+     * $module description
+     * @var string
+     */
+    static $module = '{{modelNamePlural}}';
+
+    /**
+     * Construct Description
+     */
+    public function __construct()
+    {
+        $this->model = new {{modelName}};
+    }
+
+    /**
+     * Get Index Data Description
+     * @param  array  $sortableAndSearchableColumn
+     * @return data
+     */
+    public function getIndexData(array $sortableAndSearchableColumn)
+    {
+        $this->model::validate(Request::all(), [
+            'per_page'  =>  ['numeric'],
+        ]);
+
+        $data = $this->model
+            ->getAll()
+            ->setSortableAndSearchableColumn($sortableAndSearchableColumn)
+            ->search()
+            ->sort()
+            ->orderBy('id','DESC')
+            ->paginate(Request::get('per_page'));
+
+        $data->sortableAndSearchableColumn = $sortableAndSearchableColumn;
+
+        if($data->total() == 0) throw new DataEmptyException(trans('validation.attributes.dataNotExist',['attr' => self::$module]));
+
+        return $data;
+    }
+
+    /**
+     * Get Single Data Description
+     * @param  int $id
+     * @return App\Http\Models\{{modelName}}
+     */
+    public function getSingleData($id)
+    {
+        $return = $this->model
+                ->getAll()
+                ->where('id',$id)
+                ->first();
+
+        if($return === null) throw new DataEmptyException(trans('validation.attributes.dataNotExist',['attr' => self::$module]));
+
+        return $return;
+    }
+
+}

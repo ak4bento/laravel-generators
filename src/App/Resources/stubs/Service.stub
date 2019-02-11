@@ -1,0 +1,87 @@
+<?php
+namespace App\Http\Services;
+
+use Request;
+use App\Http\Models\{{modelName}};
+use App\Exceptions\DataEmptyException;
+use App\Http\Repositories\{{modelName}}Repository;
+use App\Http\Helpers\{{modelName}}Helpers as Helpers;
+
+/**
+ * {{modelName}}Service for CRUD
+ */
+class {{modelName}}Service extends BaseService
+{
+
+    /**
+     * construct description
+     */
+    public function __construct()
+    {
+        $this->model = new {{modelName}};
+        $this->repository = new {{modelName}}Repository;
+    }
+
+    /**
+     * create description
+     *
+     * @param Request $data
+     * @return App\Http\Repositories\{{modelName}}Repository getSingleData
+     */
+    public function create($data)
+    {
+
+        \DB::beginTransaction();
+
+        $dataRecord = array_only($data, Helpers::getDataColumn());
+
+        $this->model::validate($dataRecord, Helpers::getDataColumnValidation());
+
+        $result = $this->model->create(Helpers::getDataCreate($dataRecord));
+
+        \DB::commit();
+        return $this->getSingleData($result->id);
+	}
+
+    /**
+     * update description
+     *
+     * @param int $id
+     * @param Request $data
+     * @return App\Http\Repositories\{{modelName}}Repository getSingleData
+     */
+    public function update($id, $data)
+    {
+
+        \DB::beginTransaction();
+
+        $dataRecord = array_only($data, Helpers::getDataColumn());
+
+        $this->model::validate($dataRecord, Helpers::getDataColumnValidation());
+
+        $result = $this->getSingleData($id)->update(Helpers::getDataCreate($dataRecord));
+
+        \DB::commit();
+        return $this->getSingleData($result->id);
+	}
+
+    /**
+     * dalete description
+     *
+     * @param int $id
+     * @return App\Http\Repositories\{{modelName}}Repository getSingleData
+     */
+    public function delete($id)
+    {
+        \DB::beginTransaction();
+
+        $result = $this->repository->getSingleData($id);
+
+        $return = $result->delete();
+
+        \DB::commit();
+
+        return $return;
+    }
+
+}

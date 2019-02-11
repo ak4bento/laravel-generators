@@ -1,0 +1,7 @@
+//Route {{modelName}}
+Route::get('{{modelNamePlural}}', '\App\Http\Controllers\Api\{{modelName}}Controller@index');
+Route::get('{{modelNamePlural}}/{id}', '\App\Http\Controllers\Api\{{modelName}}Controller@show');
+Route::post('{{modelNamePlural}}/create', '\App\Http\Controllers\Api\{{modelName}}Controller@create');
+Route::put('{{modelNamePlural}}/update/{id}', '\App\Http\Controllers\Api\{{modelName}}Controller@update');
+Route::delete('{{modelNamePlural}}/{id}', '\App\Http\Controllers\Api\{{modelName}}Controller@destroy');
+
