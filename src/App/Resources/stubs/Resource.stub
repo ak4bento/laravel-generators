@@ -16,7 +16,7 @@ class {{modelName}}Resource extends Resource
      */
     public function toArray($request)
     {
-        return Helpers::getDataResource();
+        return Helpers::getDataResource($this);
     }
 
     /**

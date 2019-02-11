@@ -7,29 +7,29 @@ use App;
 class {{modelName}}Helpers
 {
     /**
-     * Get Array Data Controller Description
+     * Get Array Data in Controller Description
      *
      * @return array data
      */
     static function getDataArray() {
         return [
-            'id'
+            'id' => 'id'
         ];
     }
 
     /**
-     * Get Array Data Resource Description
+     * Get Array Data in Resource Description
      *
      * @return array data
      */
-    static function getDataResource() {
+    static function getDataResource($obj) {
          return [
-             'id'
+             'id' => $obj->id
          ];
      }
 
     /**
-     * Get Data Column Description
+     * Get Data Column in Service Description
      *
      * @return array data
      */
@@ -40,7 +40,7 @@ class {{modelName}}Helpers
     }
 
     /**
-     * Get Data Column Validation Description
+     * Get Data Column Validation in Service Description
      *
      * @return array data
      */
@@ -51,7 +51,7 @@ class {{modelName}}Helpers
     }
 
     /**
-     * Get Data Column Validation Description
+     * Get Data Column Create in Service Description
      *
      * @return array data
      */
