@@ -7,36 +7,27 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class {{modelName}} extends Model
 {
-    use SoftDeletes;
-
     public $table = '{{modelNamePlural}}';
 
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
+    public $timestamps = true;
 
-
-    protected $dates = ['deleted_at'];
-
-
-    public $fillable = [
-        'id'
-    ];
+    protected $soft_delete  =   true;
 
     /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
+     * Create auto creating and modifying
      */
-    protected $casts = [
-        'id' => 'integer'
-    ];
+    public static function boot()
+    {
+        parent::boot();
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
+        self::creating(function($model){
+            $model->created_by = user()->id;
+            $model->created_from = $_SERVER['REMOTE_ADDR'];
+        });
 
-    ];
+        self::updating(function($model){
+            $model->modified_by = user()->id;
+            $model->modified_from = $_SERVER['REMOTE_ADDR'];
+        });
+    }
 }
