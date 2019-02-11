@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use App;
 use Illuminate\Http\Resources\Json\Resource;
-use App\Http\Helpers\{{modelName}}Helpers as Helpers;
+use App\Http\Helpers\{{modelName}}Helper as Helpers;
 
 class {{modelName}}Resource extends Resource
 {

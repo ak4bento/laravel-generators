@@ -6,7 +6,7 @@ use App;
 use Request;
 use App\Http\Services\{{modelName}}Service;
 use App\Http\Controllers\Controller;
-use App\Http\Helpers\{{modelName}}Helpers as Helpers;
+use App\Http\Helpers\{{modelName}}Helper as Helpers;
 
 class {{modelName}}Controller extends Controller
 {

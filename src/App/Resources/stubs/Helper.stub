@@ -5,7 +5,7 @@ namespace App\Http\Helpers;
 use App;
 use Illuminate\Http\Resources\Json\Resource;
 
-class {{modelName}}Helpers extends Resource
+class {{modelName}}Helper extends Resource
 {
     /**
      * Get Array Data in Controller Description
