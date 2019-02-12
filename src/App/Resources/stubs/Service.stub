@@ -62,7 +62,7 @@ class {{modelName}}Service extends BaseService
         $result = $this->getSingleData($id)->update(Helpers::getDataCreate($dataRecord));
 
         \DB::commit();
-        return $this->getSingleData($result->id);
+        return $this->getSingleData($id);
 	}
 
     /**
