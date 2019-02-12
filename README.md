@@ -1,88 +1,106 @@
-# Project Title
+# Project My Job
 
-One Paragraph of project description goes here
+This is a for my project only but if you want using my package, up to you.
+Because this my package project only i'm using indonesian language in the README.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Seperti pada umumnya untuk package laravel silahkan ikuti petunjuk di bawah ini.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Tentu anda harus mengistall laravel terlebih dahulu.
 
+### Install the package via composer.
+
+Download package dengan composer
+```bash
+composer require akill/generators dev-master
 ```
-Give examples
+or
 ```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
+{
+	"require": {
+		"akill/generators" : "dev-master"
+	}
+}
 ```
-Give the example
+### Register the service provider.
+
+Tambahkan 
 ```
-
-And repeat
-
+Akill\Generators\GeneratorsServiceProvider::class, 
 ```
-until finished
-```
+di dalam `providers` yang ada pada `config/app.php`.
 
-End with an example of getting some data out of the system or using it for a little demo
+Contoh
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
+```php
+'providers' => [
+	....	
+	Akill\Generators\GeneratorsServiceProvider::class,
+]
 ```
 
-### And coding style tests
+# Usage
 
-Explain what these tests test and why
+## Basic
 
+Buka terminal anda kemudian masuk di path lokasi project anda.
+
+selanjutnya ketikkan di terminal anda
 ```
-Give an example
+php artisan akill:generate NamaModuleAnda
 ```
+`Hasilnya`
 
-## Deployment
+perintah tersebut membuat folder di dalam `app/Htpp/`.
+File yang di buat berupa controller, resource, service, model, helper, dan repository
+serta menambahkan baris perintah baru di akhir `routes/api.php`
 
-Add additional notes about how to deploy this on a live system
+untuk penamaan file yang anda buat akan mengikuti sesuai Nama Module Anda.
 
-## Built With
+`Contoh`
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+````
+Http
+....Controller
+........NamaModuleAndaController.php
+....Helpers
+........NamaModuleAndaHelper.php
+....Models
+........NamaModuleAnda.php
+....Repositories
+........NamaModuleAndaRepository.php
+....Resource
+........NamaModuleAndaResource.php
+....Service
+........NamaModuleAndaService.php
+````
 
-## Contributing
+Selanjutnya setelah anda melakukan generate file tersebut, silahkan atur data yang anda inginkan pada bagian `NamaModuleAndaHelper.php`.
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Saya sengaja untuk tidak menarik data field yang ada demi memudahkan anda dalam mengatur logika sendiri.
 
-## Versioning
+Dalam package ini saya tidak memasukkan beberapa class yang telah di gunakan pada pada class yang telah di generate.
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+Untuk generator secara umum saya akan buatkan nanti setalah kerjaan ku selesai yah. :)
+
+Semoga ini membantu anda dalam membuat API dan membantu bagi anda yang ingin membuat generator sendiri.
+
+## Promotion
+Silahkan kunjungi dan subscribe web saya yah.
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+***Muhammad Akil** - *Initial work* - [Akill](http://akil.co.id/)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Acknowledgments
 
 * Hat tip to anyone whose code was used
 * Inspiration
 * etc
-
