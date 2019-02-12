@@ -1,6 +1,6 @@
 # Project My Job
 
-This is a for my project only but if you want using my package, up to you.
+This is just my project only but if you want using my package, up to you.
 Because this my package project only i'm using indonesian language in the README.
 
 ## Getting Started
