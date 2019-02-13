@@ -52,6 +52,7 @@ selanjutnya ketikkan di terminal anda
 ```
 php artisan akill:generate NamaModuleAnda
 ```
+
 `Hasilnya`
 
 perintah tersebut membuat folder di dalam `app/Htpp/`.
@@ -81,6 +82,29 @@ Http
 Selanjutnya setelah anda melakukan generate file tersebut, silahkan atur data yang anda inginkan pada bagian `NamaModuleAndaHelper.php`.
 
 Saya sengaja untuk tidak menarik data field yang ada demi memudahkan anda dalam mengatur logika sendiri.
+
+Tambahan
+
+Untuk menambahkan relasi table silahkan gunakan perintah berikut ini 
+```
+php artisan akill:relation relasi field module
+```
+
+`Contoh`
+
+```
+php artisan akill:relation Product product_id Result
+```
+
+`Product` => Nama Module yang akan direlasikan
+`product_id` => Field yang digunakan di Module yang akan direlasikan
+`Result` => Nama Module yang akan ditambahkan relasi
+
+`Note`
+Penggunaan relasi ini tidak menggunakan Eloquent.
+
+
+## Package Description
 
 Dalam package ini saya tidak memasukkan beberapa class yang telah di gunakan pada pada class yang telah di generate.
 

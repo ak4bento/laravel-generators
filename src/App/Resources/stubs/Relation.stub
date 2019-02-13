@@ -1,0 +1,2 @@
+        $relation = new {{relation}}Service;
+        $data['{{field}}'] = new App\Http\Resources\{{relation}}Resource($relation->getSingleData($data['{{field}}']));

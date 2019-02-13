@@ -1,0 +1,4 @@
+        $relation = new {{relation}}Service;
+        for ($i=0; $i < count($data); $i++) {
+            $data[$i]['{{field}}'] = new App\Http\Resources\{{relation}}Resource($relation->getSingleData($data[$i]['{{field}}']));
+        }

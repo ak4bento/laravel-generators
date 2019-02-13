@@ -7,6 +7,7 @@ namespace Akill\Generators;
  */
 use Illuminate\Support\ServiceProvider;
 use Akill\Generators\App\Commands\APIGenerator;
+use Akill\Generators\App\Commands\RelationGenerator;
 
 class GeneratorsServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,7 @@ class GeneratorsServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerCommmandGenerator(RelationGenerator::class, 'relation');
         $this->registerCommmandGenerator(APIGenerator::class, 'publish');
     }
 
