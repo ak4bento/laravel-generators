@@ -89,4 +89,7 @@ class {{modelName}}Controller extends Controller
     {
         return (new App\Http\Resources\DeletedResource($this->service->delete($id)));
     }
+
+    //Start Relation Func
+    //End Relation Func
 }

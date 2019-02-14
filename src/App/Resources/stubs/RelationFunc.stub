@@ -1,0 +1,14 @@
+    /**
+     * Display the specified relation.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function {{relation}}($locale,$id)
+    {
+        $data = $this->service->getDataRelation(Helpers::getDataArray(), '{{field}}', $id);
+        $relation = new {{relation}}Service;
+        $dataRelation = $relation->getSingleData($id);
+        $dataRelation['appointment'] = $data;
+        return new App\Http\Resources\{{relation}}Resource($dataRelation);
+    }

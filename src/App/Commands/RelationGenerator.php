@@ -21,7 +21,7 @@ class RelationGenerator extends Command
      *
      * @var string
      */
-    protected $description = 'Testing';
+    protected $description = 'Create Relation Data';
 
     /**
      * Create a new command instance.
@@ -57,7 +57,7 @@ class RelationGenerator extends Command
     }
 
     /**
-     * Append route to route file.
+     * Append Relation to Controller file.
      *
      * @return file stub
      */
@@ -73,21 +73,51 @@ class RelationGenerator extends Command
             [$relation, $field, $controller],
             $this->getStub('RelationIndex')
         );
+        $relationFuncTemplate = str_replace(
+            ['{{relation}}','{{field}}', '{{controller}}'],
+            [$relation, $field, $controller],
+            $this->getStub('RelationFunc')
+        );
         foreach(file(app_path("Http/Controllers/Api/{$controller}Controller.php")) as $line) {
             $result .= $line;
             if (trim($line) == '//Using Relation') {
                 $result .= 'use App\Http\Services\\'.$relation.'Service;';
             }
             if (trim($line) == '//Start Relation') {
-                # code...
                 $result .= $relationTemplate;
             }
             if (trim($line) == '//Start Relation Index') {
-                # code...
                 $result .= $relationIndexTemplate;
+            }
+            if (trim($line) == '//Start Relation Func') {
+                $result .= $relationFuncTemplate;
             }
         }
 
         File::put(app_path("Http/Controllers/Api/{$controller}Controller.php"), $result);
+    }
+
+    /**
+     * Append Relation to Repository file.
+     *
+     * @return file stub
+     */
+    protected function relationRepository($relation, $field, $controller){
+        $result = null;
+        $relationTemplate = str_replace(
+            ['{{relation}}','{{field}}', '{{controller}}'],
+            [$relation, $field, $controller],
+            $this->getStub('RelationRepository')
+        );
+        foreach(file(app_path("Http/Repositories/{$controller}Repository.php")) as $line) {
+            $result .= $line;
+            if (trim($line) == '//Start Create Relation') {
+                $result .= $relationTemplate;
+            }
+        }
+        File::append(base_path('routes/api.php'),"
+            Route::get('".strtolower(str_plural($name))."/".$controller."/{id}', '\App\Http\Controllers\Api\\".$controller."Controller@".$controller."');
+        ");
+        File::put(app_path("Http/Repositories/{$controller}Repository.php"), $result);
     }
 }

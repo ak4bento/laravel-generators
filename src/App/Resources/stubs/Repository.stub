@@ -67,4 +67,6 @@ class {{modelName}}Repository extends BaseRepository
         return $return;
     }
 
+    //Start Create Relation
+    //End Create Relation
 }

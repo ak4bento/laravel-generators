@@ -1,0 +1,26 @@
+    /**
+     * Get Data Relation Description
+     * @param int $id
+     * @param string $where
+     * @return object $data
+     */
+    public function getDataRelation(array $sortableAndSearchableColumn, $where, $value)
+    {
+        $this->model::validate(Request::all(), [
+            'per_page'  =>  ['numeric'],
+        ]);
+
+        $data = $this->model
+            ->getAll()
+            ->where($where, $value)
+            ->search()
+            ->sort()
+            ->orderBy('id','DESC')
+            ->paginate(Request::get('per_page'));
+
+        $data->sortableAndSearchableColumn = $sortableAndSearchableColumn;
+
+        if($data->total() == 0) throw new DataEmptyException(trans('validation.attributes.dataNotExist',['attr' => self::$module]));
+
+        return $data;
+    }
