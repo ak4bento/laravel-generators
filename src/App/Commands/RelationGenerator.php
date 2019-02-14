@@ -117,7 +117,7 @@ class RelationGenerator extends Command
             }
         }
         File::append(base_path('routes/api.php'),"
-            Route::get('".strtolower(str_plural($name))."/".$controller."/{id}', '\App\Http\Controllers\Api\\".$controller."Controller@".$controller."');
+            Route::get('".strtolower(str_plural($controller))."/".$controller."/{id}', '\App\Http\Controllers\Api\\".$controller."Controller@".$controller."');
         ");
         File::put(app_path("Http/Repositories/{$controller}Repository.php"), $result);
     }
