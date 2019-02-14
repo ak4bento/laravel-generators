@@ -75,8 +75,8 @@ class RelationGenerator extends Command
             $this->getStub('RelationIndex')
         );
         $relationFuncTemplate = str_replace(
-            ['{{relation}}','{{field}}', '{{controller}}'],
-            [$relation, $field, $controller],
+            ['{{relation}}','{{field}}', '{{controller}}', '{{relationLower}}'],
+            [$relation, $field, $controller, strtolower($relation)],
             $this->getStub('RelationFunc')
         );
         foreach(file(app_path("Http/Controllers/Api/{$controller}Controller.php")) as $line) {
@@ -117,7 +117,7 @@ class RelationGenerator extends Command
             }
         }
         File::append(base_path('routes/api.php'),"
-            Route::get('".strtolower(str_plural($controller))."/".$controller."/{id}', '\App\Http\Controllers\Api\\".$controller."Controller@".$controller."');
+            Route::get('".strtolower(str_plural($controller))."/".strtolower($relation)."/{id}', '\App\Http\Controllers\Api\\".$controller."Controller@".strtolower($relation)."');
         ");
         File::put(app_path("Http/Repositories/{$controller}Repository.php"), $result);
     }
