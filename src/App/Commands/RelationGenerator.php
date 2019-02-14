@@ -44,6 +44,7 @@ class RelationGenerator extends Command
         $field = $this->argument('field');
         $controller = $this->argument('controller');
         $this->relation($relation, $field, $controller);
+        $this->relationRepository($relation, $field, $controller);
         $this->info('Success Please Check your class');
     }
 
